@@ -160,6 +160,9 @@ section{position:relative}
   linear-gradient(160deg,var(--olive-brand),var(--olive-deep));
   display:grid;place-items:center;position:relative;overflow:hidden}
 .about-frame-inner img{width:62%;opacity:.9;filter:drop-shadow(0 8px 24px rgba(0,0,0,.4))}
+.about-frame-inner.has-photo{display:block}
+.about-frame-inner.has-photo img{width:100%;height:100%;object-fit:cover;object-position:center 15%;opacity:1;filter:saturate(.92) contrast(1.03);display:block}
+.about-frame-inner.has-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,18,10,.92) 0%,rgba(20,18,10,.35) 32%,rgba(20,18,10,0) 55%),linear-gradient(160deg,rgba(201,162,75,.12),transparent 50%);pointer-events:none}
 .about-frame .cap{position:absolute;bottom:30px;left:30px;right:30px;font-family:'Barlow Condensed';font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim);z-index:2;display:flex;justify-content:space-between}
 
 /* ===== PILARES ===== */
@@ -446,8 +449,8 @@ footer{border-top:1px solid var(--olive-line);padding:72px 0 36px;background:var
         <p class="reveal">Compramos direto das principais indústrias do país e repassamos essa condição para você: preço de atacado, estoque abastecido o ano inteiro e a garantia de que seu negócio nunca perde uma venda por falta de produto.</p>
       </div>
       <div class="about-frame reveal">
-        <div class="about-frame-inner">
-          <img src="img/logo.png" alt="Negão Distribuidora">
+        <div class="about-frame-inner has-photo">
+          <img src="img/equipe-fundador.jpg" alt="Fundador da Negão Distribuidora">
           <div class="cap"><span>Palmas — TO</span><span>Desde 2018</span></div>
         </div>
       </div>
