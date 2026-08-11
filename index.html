@@ -692,11 +692,11 @@ const FOTOS_MAP=JSON.parse("{\"352\": \"img/produto-01.jpg\", \"326\": \"img/pro
 /* ================================ */
 
 const DEMO_PROMOS = [
-  {nome:'Skol Lata 350Ml Fardo c/12', preco_de:39.90, preco_por:32.90, validade:'Só hoje', cod:187},
-  {nome:'Heineken Long Neck 330Ml', preco_de:7.90, preco_por:6.80, validade:'Enquanto durar o estoque', cod:3},
-  {nome:'Ice 51 Limão 275Ml', preco_de:8.90, preco_por:7.50, validade:'Fim de semana', cod:208},
-  {nome:'Energetico Red Bull Tradicional 250Ml', preco_de:10.90, preco_por:9.25, validade:'Só hoje', cod:547},
-  {nome:'Whisky Red Label 1Lt', preco_de:94.99, preco_por:79.99, validade:'Só hoje', cod:1844},
+  {cod:187, preco_por:135.00, validade:'Só hoje'},
+  {cod:3, preco_por:5.99, validade:'Enquanto durar o estoque'},
+  {cod:208, preco_por:6.90, validade:'Fim de semana'},
+  {cod:547, preco_por:8.50, validade:'Só hoje'},
+  {cod:1844, preco_por:74.99, validade:'Só hoje'},
 ];
 
 const DEMO = [
@@ -928,7 +928,10 @@ async function loadPromos(){
   let list=[];
   if(PROMO_SHEET_URL){try{const r=await fetch(PROMO_SHEET_URL);list=parseCSV(await r.text());}catch(e){list=DEMO_PROMOS;}}
   else list=DEMO_PROMOS;
-  list=list.map(p=>({...p,preco_de:parseFloat(p.preco_de)||0,preco_por:parseFloat(p.preco_por)||0,img:FOTOS_MAP[p.cod]||p.img||''}));
+  list=list.map(p=>{
+    const prod=PRODUCTS.find(x=>String(x.cod)===String(p.cod));
+    return {cod:p.cod, nome:prod?prod.nome:(p.nome||`Produto ${p.cod}`), preco_de:prod?prod.preco:0, preco_por:parseFloat(p.preco_por)||0, validade:p.validade, img:FOTOS_MAP[p.cod]||(prod&&prod.img)||''};
+  }).filter(p=>p.preco_por>0);
   renderPromos(list);
 }
 function renderPromos(list){
@@ -1038,7 +1041,7 @@ if(mapStage){
   setTimeout(()=>{ setInterval(spawn, 650); for(let i=0;i<5;i++)setTimeout(spawn,i*400); }, 1000);
 })();
 
-loadCatalog();loadPromos();updateCart();
+(async()=>{await loadCatalog();await loadPromos();})();updateCart();
 </script>
 </body>
 </html>
