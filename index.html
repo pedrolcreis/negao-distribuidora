@@ -148,6 +148,33 @@ section{position:relative}
 .pricebar .btn-dark:hover{background:var(--olive-brand);transform:translateY(-2px)}
 @media(max-width:900px){.pricebar-inner{grid-template-columns:1fr;text-align:center;gap:26px;padding:48px 0}.pricebar .pb-icon{margin:0 auto}.pricebar p{margin-left:auto;margin-right:auto}}
 
+/* ===== PROMOÇÕES DO DIA ===== */
+.promo{background:var(--olive-deep);position:relative;padding-top:0;overflow:hidden}
+.promo-ribbon{background:var(--gold);color:var(--olive-deep);transform:rotate(-1.6deg);width:106%;margin-left:-3%;box-shadow:0 14px 34px rgba(0,0,0,.35);position:relative;top:-18px;z-index:3;overflow:hidden;border-top:2px dashed rgba(38,34,15,.35);border-bottom:2px dashed rgba(38,34,15,.35)}
+.promo-ribbon-track{display:flex;gap:36px;white-space:nowrap;width:max-content;animation:marquee 22s linear infinite;padding:10px 0;font-family:'Barlow Condensed';font-weight:700;font-size:1.15rem;letter-spacing:.04em;text-transform:uppercase}
+.promo-ribbon-track span{display:inline-flex;align-items:center;gap:36px}
+.promo .sec-head{margin-top:48px}
+.promo-stamp{display:inline-block;border:3px solid var(--gold);color:var(--gold);padding:2px 14px;border-radius:8px;transform:rotate(-3deg);font-family:'Barlow Condensed';letter-spacing:.03em}
+.promo-sub{color:var(--cream-dim);font-size:1.08rem;margin-top:18px;max-width:38rem;margin-left:auto;margin-right:auto;line-height:1.7}
+.promo-grid{display:flex;gap:24px;overflow-x:auto;padding:50px 4px 22px;margin:0 -4px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.promo-grid::-webkit-scrollbar{height:6px}
+.promo-grid::-webkit-scrollbar-thumb{background:var(--olive-line);border-radius:10px}
+.promo-card{flex:0 0 272px;scroll-snap-align:start;position:relative;background:var(--olive);border:1.5px dashed var(--gold-soft);border-radius:14px;padding:22px 20px 20px;transition:transform .3s var(--ease),border-color .3s;overflow:visible}
+.promo-card:hover{transform:translateY(-6px) rotate(-.6deg);border-color:var(--gold)}
+.promo-tag{position:absolute;top:-16px;right:14px;background:var(--gold);color:var(--olive-deep);font-family:'Barlow Condensed';font-weight:700;font-size:.92rem;padding:6px 12px;border-radius:100px;transform:rotate(6deg);box-shadow:0 6px 16px rgba(0,0,0,.3);z-index:2}
+.promo-thumb{height:120px;display:grid;place-items:center;margin-bottom:14px}
+.promo-thumb img{max-height:100%;max-width:82%;object-fit:contain;filter:drop-shadow(0 8px 16px rgba(0,0,0,.35))}
+.promo-thumb svg{width:44px;height:44px;stroke:var(--gold-soft);fill:none;stroke-width:1.4;opacity:.6}
+.promo-body{display:flex;flex-direction:column;gap:6px}
+.promo-valid{font-family:'Barlow Condensed';font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.promo-name{font-family:'Fraunces';font-size:1.08rem;font-weight:500;line-height:1.25;min-height:2.6em}
+.promo-prices{display:flex;align-items:baseline;gap:9px;margin:4px 0 14px}
+.promo-prices .old{color:var(--cream-dim);text-decoration:line-through;font-size:.92rem;opacity:.7}
+.promo-prices .new{font-family:'Fraunces';font-size:1.5rem;font-weight:600;color:var(--cream)}
+.promo-cta{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--wa);color:#fff;border-radius:100px;padding:12px;font-family:'Barlow Condensed';font-weight:700;font-size:.92rem;letter-spacing:.04em;text-transform:uppercase;transition:.25s}
+.promo-cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
+@media(max-width:640px){.promo-card{flex:0 0 240px}}
+
 /* ===== SOBRE / editorial ===== */
 .about{background:var(--olive)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
@@ -361,6 +388,7 @@ footer{border-top:1px solid var(--olive-line);padding:72px 0 36px;background:var
     <nav class="nav">
       <a href="#" class="brand"><img src="img/logo.png" alt="Negão Distribuidora"></a>
       <div class="nav-links" id="navLinks">
+        <a href="#promocoes">Promoções</a>
         <a href="#sobre">A Negão</a>
         <a href="#portfolio">Portfólio</a>
         <a href="#processo">Como funciona</a>
@@ -435,6 +463,23 @@ footer{border-top:1px solid var(--olive-line);padding:72px 0 36px;background:var
       </div>
       <div class="pb-cta"><a href="#portfolio" class="btn btn-dark">Ver preços<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
+  </div>
+</section>
+
+<!-- PROMOÇÕES DO DIA -->
+<section class="promo pad" id="promocoes">
+  <div class="promo-ribbon">
+    <div class="promo-ribbon-track">
+      <span>🍻 Tem Negão, tem promoção</span><span>🔥 Atualizado pela nossa equipe</span><span>🍻 Tem Negão, tem promoção</span><span>🔥 Atualizado pela nossa equipe</span><span>🍻 Tem Negão, tem promoção</span><span>🔥 Atualizado pela nossa equipe</span>
+    </div>
+  </div>
+  <div class="container">
+    <div class="sec-head center">
+      <span class="eyebrow reveal">Hoje tem</span>
+      <h2 class="reveal">Promoção <span class="promo-stamp">carimbada</span> pelo próprio Negão.</h2>
+      <p class="promo-sub reveal">Se é dia, tem promoção. A nossa equipe atualiza os preços aqui embaixo direto da loja — bateu a sede, é só chamar no Zap antes que acabe.</p>
+    </div>
+    <div class="promo-grid" id="promoGrid"><div class="loading">Carregando promoções…</div></div>
   </div>
 </section>
 
@@ -642,8 +687,17 @@ footer{border-top:1px solid var(--olive-line);padding:72px 0 36px;background:var
 /* ========= CONFIGURAÇÃO ========= */
 const WHATSAPP = '5563992684272';
 const SHEET_URL = '';
+const PROMO_SHEET_URL = '';
 const FOTOS_MAP=JSON.parse("{\"352\": \"img/produto-01.jpg\", \"326\": \"img/produto-02.jpg\", \"431\": \"img/produto-03.jpg\", \"2778\": \"img/produto-04.jpg\", \"200\": \"img/produto-05.jpg\", \"36\": \"img/produto-06.jpg\", \"3347\": \"img/produto-07.jpg\", \"260\": \"img/produto-08.jpg\", \"2\": \"img/produto-09.jpg\", \"1704\": \"img/produto-10.jpg\", \"3\": \"img/produto-11.jpg\", \"26\": \"img/produto-12.jpg\", \"3386\": \"img/produto-13.jpg\", \"199\": \"img/produto-14.jpg\", \"1\": \"img/produto-15.jpg\", \"187\": \"img/produto-16.jpg\", \"3203\": \"img/produto-17.jpg\", \"160\": \"img/produto-18.jpg\", \"1282\": \"img/produto-19.jpg\", \"547\": \"img/produto-20.jpg\", \"478\": \"img/produto-21.jpg\", \"65\": \"img/produto-22.jpg\", \"208\": \"img/produto-23.jpg\", \"348\": \"img/produto-24.jpg\", \"68\": \"img/produto-25.jpg\", \"336\": \"img/produto-26.jpg\", \"1340\": \"img/produto-27.jpg\", \"77\": \"img/produto-28.jpg\", \"3247\": \"img/produto-29.jpg\", \"12\": \"img/produto-30.jpg\", \"249\": \"img/produto-31.jpg\", \"15\": \"img/produto-32.jpg\", \"1805\": \"img/produto-33.jpg\", \"314\": \"img/produto-34.jpg\", \"1844\": \"img/produto-35.jpg\", \"754\": \"img/produto-36.jpg\", \"3423\": \"img/produto-37.jpg\", \"82\": \"img/produto-38.jpg\", \"2651\": \"img/produto-39.jpg\", \"1481\": \"img/produto-40.jpg\", \"3385\": \"img/produto-41.jpg\", \"2616\": \"img/produto-42.jpg\", \"1761\": \"img/produto-43.jpg\", \"3790\": \"img/produto-44.jpg\", \"3754\": \"img/produto-45.jpg\", \"3755\": \"img/produto-46.jpg\", \"1719\": \"img/produto-47.jpg\"}");
 /* ================================ */
+
+const DEMO_PROMOS = [
+  {nome:'Skol Lata 350Ml Fardo c/12', preco_de:39.90, preco_por:32.90, validade:'Só hoje', cod:187},
+  {nome:'Heineken Long Neck 330Ml', preco_de:7.90, preco_por:6.80, validade:'Enquanto durar o estoque', cod:3},
+  {nome:'Ice 51 Limão 275Ml', preco_de:8.90, preco_por:7.50, validade:'Fim de semana', cod:208},
+  {nome:'Energetico Red Bull Tradicional 250Ml', preco_de:10.90, preco_por:9.25, validade:'Só hoje', cod:547},
+  {nome:'Whisky Red Label 1Lt', preco_de:94.99, preco_por:79.99, validade:'Só hoje', cod:1844},
+];
 
 const DEMO = [
   {categoria:'Cervejas', nome:'Antarctica 269Ml Cx / 15', descricao:'', preco:41.99, tag:'Mais pedido', cod:200},
@@ -870,6 +924,32 @@ function parseCSV(t){const l=t.trim().split(/\r?\n/);const h=l[0].split(',').map
   return l.slice(1).map(line=>{const c=splitLine(line);const o={};h.forEach((k,i)=>o[k]=(c[i]||'').trim());return o;}).filter(p=>p.nome);}
 function splitLine(line){const o=[];let c='',q=false;for(const ch of line){if(ch==='"')q=!q;else if(ch===','&&!q){o.push(c);c='';}else c+=ch;}o.push(c);return o.map(s=>s.replace(/^"|"$/g,''));}
 
+async function loadPromos(){
+  let list=[];
+  if(PROMO_SHEET_URL){try{const r=await fetch(PROMO_SHEET_URL);list=parseCSV(await r.text());}catch(e){list=DEMO_PROMOS;}}
+  else list=DEMO_PROMOS;
+  list=list.map(p=>({...p,preco_de:parseFloat(p.preco_de)||0,preco_por:parseFloat(p.preco_por)||0,img:FOTOS_MAP[p.cod]||p.img||''}));
+  renderPromos(list);
+}
+function renderPromos(list){
+  const grid=document.getElementById('promoGrid');
+  if(!list.length){grid.innerHTML='<div class="empty">Sem promoção agora — mas o Negão já tá preparando a próxima.</div>';return;}
+  grid.innerHTML=list.map(p=>{
+    const off=(p.preco_de>p.preco_por&&p.preco_de>0)?Math.round((1-p.preco_por/p.preco_de)*100):0;
+    const msg=encodeURIComponent(`Oi! Vi a promoção de ${p.nome} no site e quero aproveitar 🍻`);
+    return `<div class="promo-card reveal in">
+      <div class="promo-tag">${off?`-${off}%`:'OFERTA'}</div>
+      <div class="promo-thumb">${p.img?`<img src="${p.img}" alt="${p.nome}">`:catIcon('')}</div>
+      <div class="promo-body">
+        <span class="promo-valid">${p.validade||'Só hoje'}</span>
+        <span class="promo-name">${p.nome}</span>
+        <div class="promo-prices">${p.preco_de?`<span class="old">${brl(p.preco_de)}</span>`:''}<span class="new">${brl(p.preco_por)}</span></div>
+        <a class="promo-cta" target="_blank" rel="noopener" href="https://wa.me/${WHATSAPP}?text=${msg}"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>Pedir no Zap</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
 function buildFilters(){
   const cats=['Mais pedidos','Todos',...new Set(PRODUCTS.map(p=>p.categoria).filter(Boolean))];
   document.getElementById('filters').innerHTML=cats.map(c=>`<button class="chip ${c===activeCat?'active':''}" onclick="setCat('${c.replace(/'/g,"\\'")}')">${c}</button>`).join('');
@@ -958,7 +1038,7 @@ if(mapStage){
   setTimeout(()=>{ setInterval(spawn, 650); for(let i=0;i<5;i++)setTimeout(spawn,i*400); }, 1000);
 })();
 
-loadCatalog();updateCart();
+loadCatalog();loadPromos();updateCart();
 </script>
 </body>
 </html>
