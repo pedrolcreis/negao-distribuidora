@@ -100,15 +100,25 @@ header.scrolled{background:rgba(38,34,15,.88);backdrop-filter:blur(16px) saturat
 @keyframes surfaceShimmer{0%,100%{opacity:.4}50%{opacity:.8}}
 .site-bubbles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .bubble{position:absolute;bottom:-20px;border-radius:50%;
-  background:radial-gradient(circle at 32% 28%,rgba(255,252,242,.4),rgba(230,205,150,.18) 55%,transparent 80%);
+  background:radial-gradient(circle at 30% 26%,rgba(255,255,252,.95),rgba(255,250,235,.5) 30%,rgba(230,205,150,.16) 62%,transparent 80%);
+  box-shadow:inset 0 0 3px rgba(255,255,255,.5),0 0 4px rgba(201,162,75,.15);
   opacity:0;will-change:transform,opacity}
 @keyframes rise{
-  0%{transform:translate(0,0) scale(.5);opacity:0}
-  10%{opacity:.5}
+  0%{transform:translate(0,0) scale(.4);opacity:0}
+  8%{opacity:.7}
   50%{transform:translate(var(--drift,8px),-46vh) scale(1)}
-  85%{opacity:.35}
-  100%{transform:translate(0,-92vh) scale(1.05);opacity:0}}
-@media(prefers-reduced-motion:reduce){.hero-liquid{animation:none;height:0}.bubble,.site-bubbles{display:none}}
+  85%{opacity:.4}
+  100%{transform:translate(calc(var(--drift,8px) * 1.6),-92vh) scale(1.08);opacity:0}}
+.hero-bubbles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-bubble{position:absolute;bottom:0;border-radius:50%;
+  background:radial-gradient(circle at 30% 26%,rgba(255,255,252,.98),rgba(255,248,225,.6) 32%,rgba(230,205,150,.2) 62%,transparent 82%);
+  box-shadow:inset 0 0 2px rgba(255,255,255,.6);
+  opacity:0;will-change:transform,opacity}
+@keyframes fizz{
+  0%{transform:translateY(0) translateX(0) scale(.5);opacity:0}
+  12%{opacity:.85}
+  100%{transform:translateY(-120px) translateX(var(--fdrift,4px)) scale(1);opacity:0}}
+@media(prefers-reduced-motion:reduce){.hero-liquid{animation:none;height:0}.bubble,.site-bubbles,.hero-bubble{display:none}}
 
 /* ===== MARQUEE / marcas ===== */
 .marquee-wrap{border-top:1px solid var(--olive-line);border-bottom:1px solid var(--olive-line);padding:34px 0;overflow:hidden;background:rgba(0,0,0,.12)}
@@ -413,6 +423,7 @@ footer{border-top:1px solid var(--olive-line);padding:72px 0 36px;background:var
   <div class="grain"></div>
   <div class="hero-liquid" id="heroLiquid">
     <div class="body"></div>
+    <div class="hero-bubbles" id="heroBubbles"></div>
     <div class="surface"></div>
     <div class="foam"><svg viewBox="0 0 1200 14" preserveAspectRatio="none"><path d="M0 8 Q60 2 120 7 T240 7 T360 6 T480 8 T600 6 T720 7 T840 6 T960 8 T1080 6 T1200 7 V14 H0 Z" fill="rgba(240,225,190,.6)"/></svg></div>
   </div>
@@ -1018,6 +1029,24 @@ if(mapStage){
   mio.observe(mapStage);
 }
 
+
+// bolhas de carbonatação subindo dentro do líquido do hero
+(function(){
+  const hb=document.getElementById('heroBubbles');
+  if(!hb||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  function spawn(){
+    const b=document.createElement('span');b.className='hero-bubble';
+    const s=2+Math.random()*4;
+    b.style.width=b.style.height=s+'px';
+    b.style.left=(Math.random()*100)+'%';
+    b.style.setProperty('--fdrift',(Math.random()*16-8).toFixed(0)+'px');
+    const dur=1.4+Math.random()*1.4;
+    b.style.animation=`fizz ${dur}s ease-out ${(Math.random()*0.3).toFixed(2)}s forwards`;
+    hb.appendChild(b);
+    setTimeout(()=>b.remove(),(dur+0.5)*1000);
+  }
+  setTimeout(()=>{ setInterval(spawn,180); for(let i=0;i<8;i++)setTimeout(spawn,i*90); },1200);
+})();
 
 // bolhas ambiente sutis subindo pelo site todo
 (function(){
