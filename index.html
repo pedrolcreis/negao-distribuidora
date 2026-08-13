@@ -953,8 +953,9 @@ async function loadPromos(){
   else list=DEMO_PROMOS;
   list=list.map(p=>{
     const prod=PRODUCTS.find(x=>String(x.cod)===String(p.cod));
-    return {cod:p.cod, nome:prod?prod.nome:(p.nome||`Produto ${p.cod}`), preco_de:prod?prod.preco:0, preco_por:parseFloat(p.preco_por)||0, validade:p.validade, img:FOTOS_MAP[p.cod]||(prod&&prod.img)||''};
-  }).filter(p=>p.preco_por>0);
+    if(!prod)return null; // codigo nao existe no catalogo: nunca mostra promocao quebrada no site
+    return {cod:p.cod, nome:prod.nome, preco_de:prod.preco, preco_por:parseFloat(p.preco_por)||0, validade:p.validade, img:FOTOS_MAP[p.cod]||prod.img||''};
+  }).filter(p=>p&&p.preco_por>0);
   renderPromos(list);
 }
 function renderPromos(list){
